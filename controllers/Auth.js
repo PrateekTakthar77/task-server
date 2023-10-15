@@ -62,9 +62,8 @@ const logInUser = async (req, res) => {
 
         const token = generateJwtToken(payload);
 
-        res
-            .status(200)
-            .json({ message: "Login G", token, User: payload, payload: payload });
+        res.status(200).json({ message: "Login successful", token, user: payload });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message || "An error occurred" });
