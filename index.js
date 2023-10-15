@@ -11,6 +11,14 @@ const PORT = process.env.PORT || 3000
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+// Enable CORS for all origins (you can restrict it to your frontend's origin)
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Replace with your frontend's URL
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
 app.use("/api/auth", authRouter);
 
 app.get('/', (req, res, next) => {
